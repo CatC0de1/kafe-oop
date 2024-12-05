@@ -8,7 +8,7 @@ class App {
     constructor(port) {
       this.app = express();
       this.port = port;
-      this.kafe = new Kafe('Lha Iki Kafe');
+      this.kafe = new Kafe('Lha Iki Kafe', 'http://localhost:3003');
       this.initMiddleware();
       this.initEjs();
       this.initRoutes();

@@ -31,3 +31,17 @@ function closeModal() {
 // document.getElementById('closeModal').addEventListener('click', () => {
 //     document.getElementById('itemModal').classList.add('hidden');
 // });
+
+itemModal.onclick = function(event) {
+  if (event.target == itemModal) {
+    document.getElementById('itemModal').classList.add('hidden');
+  }
+};
+
+document.addEventListener('dragstart', function(event) {
+    event.preventDefault();
+});
+
+document.addEventListener('selectstart', function(event) {
+    event.preventDefault();
+});

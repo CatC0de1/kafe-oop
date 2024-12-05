@@ -7,7 +7,6 @@
     <title><%= title %></title>
 </head>
 <body>
-    <!-- <img src="image/bg.jpg" alt="background"> -->
 
     <div class="header">
         <%= title %>
@@ -27,7 +26,7 @@
 
                         <div class="item-info">
                             <h3 class="item-nama"><%= item.name %></h3>
-                            <p class="item-deskripsi"><%= item.description %></p>
+                            <!-- <p class="item-deskripsi"><%= item.description %></p> -->
                             <p class="item-harga">Rp <%= item.price %></p>
                         </div>
                     </div>
@@ -36,6 +35,7 @@
         <% } %>
     </div>
 
+    <!-- modal -->
     <div id="itemModal" class="modal hidden">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -43,7 +43,14 @@
             <img id="modalImage" src="" alt="" />
             <p id="modalDescription"></p>
             <p id="modalPrice"></p>
+            <div class="beli">
+                Tambah ke Pesanan
+            </div>
         </div>
+    </div>
+
+    <div class="footer">
+        &copy; <%= title %> <%= new Date().getFullYear() %>
     </div>
     
 </body>

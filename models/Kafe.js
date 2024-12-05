@@ -1,16 +1,18 @@
 const express = require('express');
 const axios = require('axios');
+const { mongo } = require('mongoose');
 
 class Kafe {
-    constructor(nama) {
+    constructor(nama, mongoURI) {
         this.nama = nama;
+        this.mongoURI =  mongoURI;
         this.router = express.Router();
         this.initRoutes();
     }
 
     async fetchAllCollections() {
         try {
-            const response = await axios.get('http://localhost:3003/api/allCollections');
+            const response = await axios.get(`${this.mongoURI}/api/allCollections`);
             return response.data;
         } catch (error) {
             console.error('Gagal mendapatkan data dari API MongoDB:', error.message);
@@ -33,7 +35,7 @@ class Kafe {
 
             try {
                 console.log('Menerima permintaan untuk item ID:', { collectionName, id });
-                const response = await axios.get(`http://localhost:3003/api/${collectionName}/${id}`);
+                const response = await axios.get(`${this.mongoURI}/api/${collectionName}/${id}`);
                 console.log('Data item berhasil diambil:', response.data);
 
                 res.json(response.data);
