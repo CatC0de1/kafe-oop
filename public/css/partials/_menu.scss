@@ -4,7 +4,7 @@
     flex-direction: column;
     // gap: 5px;
     // height: 100%;
-    padding: 0px 15% 5%;
+    padding: 0px 15% 10%;
 
     .nama-menu {
         // font-size: 32px;
@@ -78,20 +78,21 @@
         margin: 15%;
         padding: 50px;
         border: 1px solid #888;
-        width: 80%;
+        width: 40%;
         height: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         .close {
+            position: fixed;
             align-self: flex-end;
             font-size: 32px;
         }
 
-        h3 {
+        // h3 {
             
-        }
+        // }
 
         img {
             width: 100%;
@@ -100,12 +101,23 @@
             border-radius: 8px;
         }
 
-        p:nth-child(3) {
+        // p:nth-child(3) {
             
+        // }
+
+        // p:nth-child(4) {
+
+        // }
+
+        .beli {
+            padding: 2%;
+            margin: 0 15%;
+            background-color: $primary-color;
+            border-radius: 32px;
         }
 
-        p:nth-child(4) {
-
+        .beli:active {
+            @include click;   
         }
     }
 }
@@ -121,3 +133,72 @@
 #itemModal:not(.hidden) {
     display: flex;
 }
+
+
+.toggle {
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    .switch {
+        --secondary-container: #a1a8e8;
+        --primary: #603ac1;
+        font-size: 17px;
+        position: relative;
+        display: inline-block;
+        width: 3.7em;
+        height: 1.8em;
+    
+        input {
+            display: none;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e27676;
+            transition: .2s;
+            border-radius: 30px;
+        }
+    
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.4em;
+            width: 1.4em;
+            border-radius: 20px;
+            left: 0.2em;
+            bottom: 0.2em;
+            background-color: #da5757;
+            transition: .4s;
+        }
+    
+        input:checked + .slider::before {
+            background-color: var(--primary);
+        }
+           
+        input:checked + .slider {
+            background-color: var(--secondary-container);
+       }
+           
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--secondary-container);
+       }
+           
+        input:checked + .slider:before {
+            transform: translateX(1.9em);
+        }
+    }
+}
+
+
+   //https://uiverse.io/TimTrayler/quiet-swan-35

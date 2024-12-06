@@ -1,0 +1,40 @@
+<div class="menu">
+    <% for (let collectionName in collections) { %>
+        <h2 class="nama-menu"><%= collectionName %></h2>
+        <div class="menu-container">
+            <% collections[collectionName].forEach(item => { %>
+                <div class="item-container" data-id="<%= item._id %>" data-collection="<%= collectionName %>" onclick="openModal('<%= item._id %>', '<%= collectionName %>')">
+                    <img src="<%= item.image %>" alt="<%= item.name %>" class="item-image" />
+
+                    <div class="item-info">
+                        <h3 class="item-nama"><%= item.name %></h3>
+                        <!-- <p class="item-deskripsi"><%= item.description %></p> -->
+                        <p class="item-harga">Rp <%= item.price %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>
+
+<!-- modal -->
+<div id="itemModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalName"></h3>
+        <img id="modalImage" src="" alt="modalName" />
+        <p id="modalDescription"></p>
+        <p id="modalPrice"></p>
+        <div class="toggle" id="tipe">
+            <p>Hot</p>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+            <p>Iced</p>
+        </div>
+        <div class="beli">Tambah ke Pesanan</div>
+    </div>
+</div>
+
+<script src="js/index.js"></script>

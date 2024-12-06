@@ -1,0 +1,18 @@
+.promo {
+    margin: 5% 15%;
+    padding: 2% 4%;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+
+    p:nth-child(1) {
+        // text-align: center;
+        margin-bottom: 0;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    p:nth-child(2) {
+        text-align: justify;
+    }
+}

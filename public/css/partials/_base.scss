@@ -1,10 +1,17 @@
 @use "sass:math";
 
 $font-stack: Helvetica, sans-sherif;
-$primary-color: #FF0;
+$primary-color: #FFE5B4;
+$clicked: rgb(255, 249, 240);
 $primary-font-size: 20px;
 
+@mixin click($click: $clicked) {
+    background-color: $click;
+    transition: background-color 0.3s ease;
+}
+
 body {
+    margin: 0;
     font: 100% $font-stack;
     // color: white;
     font-size: $primary-font-size;

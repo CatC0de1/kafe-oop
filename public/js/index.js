@@ -10,14 +10,18 @@ async function openModal(itemId, collectionName) {
         //     return;
         // }
 
-        // Tampilkan data di dalam modal
         document.getElementById('modalName').textContent = item.name;
         document.getElementById('modalImage').src = item.image;
         document.getElementById('modalImage').alt = item.name;
         document.getElementById('modalDescription').textContent = item.description;
         document.getElementById('modalPrice').textContent = `Rp ${item.price}`;
 
-        // Tampilkan modal
+        if (item.types === true) {
+            document.getElementById('tipe').style.display = 'flex';
+        } else {
+            document.getElementById('tipe').style.display = 'none'; // Sembunyikan jika types = false
+        }
+
         document.getElementById('itemModal').classList.remove('hidden');
     } catch (error) {
         console.error('Gagal mendapatkan data item:', error);
