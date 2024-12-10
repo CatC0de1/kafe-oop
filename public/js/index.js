@@ -1,6 +1,5 @@
 async function openModal(itemId, collectionName) {
     try {
-        // Ambil data item berdasarkan ID
         const response = await fetch(`/api/${collectionName}/${itemId}`);
         const item = await response.json();
 
@@ -19,7 +18,7 @@ async function openModal(itemId, collectionName) {
         if (item.types === true) {
             document.getElementById('tipe').style.display = 'flex';
         } else {
-            document.getElementById('tipe').style.display = 'none'; // Sembunyikan jika types = false
+            document.getElementById('tipe').style.display = 'none';
         }
 
         document.getElementById('itemModal').classList.remove('hidden');
