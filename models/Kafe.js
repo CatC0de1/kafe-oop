@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const { mongo } = require('mongoose');
+// const { mongo } = require('mongoose');
 
 class Kafe {
     constructor(nama, mongoURI) {
@@ -15,18 +15,30 @@ class Kafe {
             const response = await axios.get(`${this.mongoURI}/api/allCollections`);
             return response.data;
         } catch (error) {
-            console.error('Gagal mendapatkan data dari API MongoDB:', error.message);
+            console.error('Gagal mendapatkan data dari API MongoDB: ', error.message);
             return {};
+        }
+    }
+
+    async fetchPromoContent() {
+        try {
+            const response = await axios.get(`${this.mongoURI}/api/promo`);
+            return response.data;
+        } catch (error) {
+            console.error('Gagal mendapatkan data dari API MongoDB: ', error.message);
+            return [];
         }
     }
 
     initRoutes() {
         this.router.get('/', async (req, res) => {
             const collections = await this.fetchAllCollections();
+            const promoData = await this.fetchPromoContent();
 
             res.render('index', {
                 collections,
                 title: this.nama,
+                promo: promoData,
             });
         });
 

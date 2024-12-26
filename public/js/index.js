@@ -3,17 +3,11 @@ async function openModal(itemId, collectionName) {
         const response = await fetch(`/api/${collectionName}/${itemId}`);
         const item = await response.json();
 
-        // if (!item || !item.price) {
-        //     console.error('Data item tidak valid:', item);
-        //     alert('Gagal memuat data item. Silakan coba lagi.');
-        //     return;
-        // }
-
-        document.getElementById('modalName').textContent = item.name;
-        document.getElementById('modalImage').src = item.image;
-        document.getElementById('modalImage').alt = item.name;
-        document.getElementById('modalDescription').textContent = item.description;
-        document.getElementById('modalPrice').textContent = `Rp ${item.price}`;
+        document.getElementById('menuName').textContent = item.name;
+        document.getElementById('menuImage').src = item.image;
+        document.getElementById('menuImage').alt = item.name;
+        document.getElementById('menuDescription').textContent = item.description;
+        document.getElementById('menuPrice').textContent = `Rp ${item.price}`;
 
         if (item.types === true) {
             document.getElementById('tipe').style.display = 'flex';
@@ -21,25 +15,38 @@ async function openModal(itemId, collectionName) {
             document.getElementById('tipe').style.display = 'none';
         }
 
-        document.getElementById('itemModal').classList.remove('hidden');
+        document.getElementById('menuModal').classList.remove('hidden');
     } catch (error) {
         console.error('Gagal mendapatkan data item:', error);
     }
 }
 
-function closeModal() {
-    document.getElementById('itemModal').classList.add('hidden');
-}
-
-// document.getElementById('closeModal').addEventListener('click', () => {
-//     document.getElementById('itemModal').classList.add('hidden');
-// });
-
-itemModal.onclick = function(event) {
-  if (event.target == itemModal) {
-    document.getElementById('itemModal').classList.add('hidden');
+menuModal.onclick = function(event) {
+  if (event.target == menuModal) {
+    document.getElementById('menuModal').classList.add('hidden');
   }
 };
+
+let currentQuantity = 1;
+
+function updateQuantity(change) {
+    const quantityElement = document.getElementById('quantity');
+    currentQuantity = Math.max(1, currentQuantity + change);
+    quantityElement.textContent = currentQuantity;
+}
+
+function closeModal() {
+    const modal = document.getElementById('menuModal');
+    modal.classList.add('hidden');
+
+    const quantityElement = document.getElementById('quantity');
+    currentQuantity = 1;
+    quantityElement.textContent = currentQuantity;
+
+    const toggleSwitch = document.querySelector('#tipe .switch input[type="checkbox"]');
+    toggleSwitch.checked = false;
+}
+
 
 document.addEventListener('dragstart', function(event) {
     event.preventDefault();

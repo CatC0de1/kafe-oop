@@ -1,6 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
+// const bodyParser = require('body-parser');
+// const fs = require('fs');
 const path = require('path');
 const Kafe = require('./models/Kafe');
 
@@ -8,7 +8,7 @@ class App {
     constructor(port) {
       this.app = express();
       this.port = port;
-      this.kafe = new Kafe('Lha Iki Kafe', 'http://localhost:3003');
+      this.kafe = new Kafe('Lha Iki Kafe', 'http://localhost:5000');
       this.initMiddleware();
       this.initEjs();
       this.initRoutes();
@@ -21,8 +21,8 @@ class App {
     }
 
     initMiddleware() {
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
     }
 
     initRoutes() {

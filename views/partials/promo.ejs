@@ -1,4 +1,24 @@
-<div class="promo">
-    <p>promo</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsam officiis quasi doloribus ratione deleniti vel, aspernatur ea, similique provident hic magnam distinctio nulla totam numquam dolorum animi, amet consequuntur.</p>
+<div class="promo-wrap">
+    <div class="promo-nav prev">
+        <button class="prev">Prev</button>
+    </div>
+
+    <div class="promo">
+        <div class="promo-container">
+            <% if (promo && promo.length > 0) { %>
+                <% promo.forEach((item, index) => { %>
+                    <div class="promo-item">
+                        <p>Promo <%= index + 1 %></p>
+                        <p><%= item.content %></p>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Tidak ada promo tersedia saat ini.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="promo-nav next">
+        <button class="next">Next</button>
+    </div>
 </div>

@@ -15,4 +15,17 @@ body {
     font: 100% $font-stack;
     // color: white;
     font-size: $primary-font-size;
+    
+    .wrap {
+        display: flex;
+        flex-direction: row;
+
+        .right {
+            flex-basis: 70%;
+        }
+    
+        .left {
+            flex-basis: 30%;
+        }
+    }
 }

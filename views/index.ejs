@@ -8,16 +8,31 @@
 </head>
 <body>
 
-    <%- include('partials/header.ejs') %>
-
-    <%- include('partials/promo.ejs') %>
-
-    <%- include('partials/menu.ejs') %>
-
-    <%- include('partials/checkout.ejs') %>
+    <div class="wrap">
+        <div class="right">
+    
+            <%- include('partials/header.ejs') %>
+        
+            <%- include('partials/promo.ejs') %>
+        
+            <%- include('partials/menu.ejs') %>
+            
+            
+        </div>    
+        <div class="left">
+            
+            <%- include('partials/checkout.ejs') %>
+            
+        </div>
+    </div>
+    
+    <%- include('partials/coffee.ejs') %>
 
     <%- include('partials/footer.ejs') %>
     
 </body>
+
+<script src="js/index.js"></script>
+<script src="/js/promo.js"></script>
 
 </html>

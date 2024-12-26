@@ -4,11 +4,11 @@
         <div class="menu-container">
             <% collections[collectionName].forEach(item => { %>
                 <div class="item-container" data-id="<%= item._id %>" data-collection="<%= collectionName %>" onclick="openModal('<%= item._id %>', '<%= collectionName %>')">
-                    <img src="<%= item.image %>" alt="<%= item.name %>" class="item-image" />
-
+                    <div class="image-info">
+                        <img src="<%= item.image %>" alt="<%= item.name %>" class="item-image" />
+                    </div>
                     <div class="item-info">
                         <h3 class="item-nama"><%= item.name %></h3>
-                        <!-- <p class="item-deskripsi"><%= item.description %></p> -->
                         <p class="item-harga">Rp <%= item.price %></p>
                     </div>
                 </div>
@@ -18,13 +18,13 @@
 </div>
 
 <!-- modal -->
-<div id="itemModal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h3 id="modalName"></h3>
-        <img id="modalImage" src="" alt="modalName" />
-        <p id="modalDescription"></p>
-        <p id="modalPrice"></p>
+<div id="menuModal" class="modal-menu hidden">
+    <div class="menu-content">
+        <span class="menu-close" onclick="closeModal()">&times;</span>
+        <h3 id="menuName"></h3>
+        <img id="menuImage" src="" alt="menuName" />
+        <p id="menuDescription"></p>
+        <p id="menuPrice"></p>
         <div class="toggle" id="tipe">
             <p>Hot</p>
             <label class="switch">
@@ -33,8 +33,11 @@
             </label>
             <p>Iced</p>
         </div>
+        <div class="quantity-control">
+            <button class="btn-quantity" id="decrease" onclick="updateQuantity(-1)">-</button>
+            <span id="quantity" class="quantity-value">1</span>
+            <button class="btn-quantity" id="increase" onclick="updateQuantity(1)">+</button>
+        </div>
         <div class="beli">Tambah ke Pesanan</div>
     </div>
 </div>
-
-<script src="js/index.js"></script>

@@ -4,7 +4,7 @@
     flex-direction: column;
     // gap: 5px;
     // height: 100%;
-    padding: 0px 15% 10%;
+    padding: 0px 10% 10%;
 
     .nama-menu {
         // font-size: 32px;
@@ -14,7 +14,7 @@
     .menu-container {
         
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 20px;
         width: 100%;
 
@@ -28,38 +28,46 @@
             display: flex;
             flex-direction: column;
             
-            img {
-                align-self: center;
-                width: 100%;
-                max-width: 150px;
-                height: auto;
-                border-radius: 8px;
-                margin-bottom: 15px;
+            .image-info {
+                flex-basis: 55%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                img {
+                    align-self: center;
+                    width: 100%;
+                    max-width: 150px;
+                    height: auto;
+                    border-radius: 8px;
+                    margin-bottom: 15px;
+                }
             }
             
             .item-info {
+                flex-basis: 45%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 padding: 0px 10%;
 
                 .item-nama {
+                    flex-basis: 75%;
                     text-align: center;
                     margin: 0px;
                     margin-bottom: 10px ;
                 }
-                
-                // .item-deskripsi {
-                //     text-align: justify;
-                //     margin: 0px;
-                // }
+
+                .item-harga {
+                    flex-basis: 25%;
+                }
             }
         }
     }
 }
 
 // modal
-.modal {
+.modal-menu {
     display: none;
     position: fixed;
     z-index: 10;
@@ -73,7 +81,7 @@
     justify-content: center;
     align-items: center;
 
-    .modal-content {
+    .menu-content {
         background-color: white;
         margin: 15%;
         padding: 50px;
@@ -83,16 +91,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        border-radius: 16px;
 
-        .close {
+        .menu-close {
             position: fixed;
             align-self: flex-end;
             font-size: 32px;
         }
-
-        // h3 {
-            
-        // }
 
         img {
             width: 100%;
@@ -101,19 +106,104 @@
             border-radius: 8px;
         }
 
-        // p:nth-child(3) {
+        .toggle {
+            display: none;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        
+            .switch {
+                --secondary-container: #a1a8e8;
+                --primary: #603ac1;
+                font-size: 17px;
+                position: relative;
+                display: inline-block;
+                width: 3.7em;
+                height: 1.8em;
             
-        // }
+                input {
+                    display: none;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+            
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #e27676;
+                    transition: .2s;
+                    border-radius: 30px;
+                }
+            
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 1.4em;
+                    width: 1.4em;
+                    border-radius: 20px;
+                    left: 0.2em;
+                    bottom: 0.2em;
+                    background-color: #da5757;
+                    transition: .4s;
+                }
+            
+                input:checked + .slider::before {
+                    background-color: var(--primary);
+                }
+                   
+                input:checked + .slider {
+                    background-color: var(--secondary-container);
+               }
+                   
+                input:focus + .slider {
+                    box-shadow: 0 0 1px var(--secondary-container);
+               }
+                   
+                input:checked + .slider:before {
+                    transform: translateX(1.9em);
+                }
+            }
+        }
 
-        // p:nth-child(4) {
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
 
-        // }
+            .btn-quantity {
+                background-color: #f0f0f0;
+                border: 1px solid #ccc;
+                padding: 5px 15px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            
+            .quantity-value {
+                font-size: 16px;
+                font-weight: bold;
+                width: 30px;
+                text-align: center;
+            }
+        }
+        
+        
 
         .beli {
-            padding: 2%;
-            margin: 0 15%;
+            padding: 1%;
+            // margin: 0 15%;
             background-color: $primary-color;
             border-radius: 32px;
+            position: fixed;
+            bottom: 0;
+            margin-bottom: 5%;
         }
 
         .beli:active {
@@ -126,79 +216,12 @@
     display: none;
 }
 
-#itemModal {
+#menuModal {
     display: none;
 }
           
-#itemModal:not(.hidden) {
+#menuModal:not(.hidden) {
     display: flex;
 }
-
-
-.toggle {
-    display: none;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-
-    .switch {
-        --secondary-container: #a1a8e8;
-        --primary: #603ac1;
-        font-size: 17px;
-        position: relative;
-        display: inline-block;
-        width: 3.7em;
-        height: 1.8em;
-    
-        input {
-            display: none;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-    
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #e27676;
-            transition: .2s;
-            border-radius: 30px;
-        }
-    
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 1.4em;
-            width: 1.4em;
-            border-radius: 20px;
-            left: 0.2em;
-            bottom: 0.2em;
-            background-color: #da5757;
-            transition: .4s;
-        }
-    
-        input:checked + .slider::before {
-            background-color: var(--primary);
-        }
-           
-        input:checked + .slider {
-            background-color: var(--secondary-container);
-       }
-           
-        input:focus + .slider {
-            box-shadow: 0 0 1px var(--secondary-container);
-       }
-           
-        input:checked + .slider:before {
-            transform: translateX(1.9em);
-        }
-    }
-}
-
 
    //https://uiverse.io/TimTrayler/quiet-swan-35
