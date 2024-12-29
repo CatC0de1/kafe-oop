@@ -1,3 +1,70 @@
+@use "sass:math";
+
+$font-stack: Oswald, Roboto, Helvetica, sans-sherif;
+// $primary-color: #FFE5B4;
+$primary-color: #FED500;
+$secondary-color: #1D1D1D;
+// $clicked: rgb(255, 249, 240);
+$clicked: #e4bf00;
+$primary-font-size: 20px;
+$darkerRgba: rgba(0, 0, 0, 0.5);
+
+@mixin click($click: $clicked) {
+    background-color: $click;
+    transition: background-color 0.3s ease;
+}
+
+@mixin modal() {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin modalContent() {
+    background-color: white;
+    margin: 15%;
+    padding: 50px;
+    border: 1px solid #888;
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+}
+
+@mixin modalClose() {
+    position: fixed;
+    align-self: flex-end;
+    font-size: 64px;
+    margin-top: -35px;
+}
+
+@mixin modalTitle() {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+@mixin modalButton {
+    padding: 1% 2%;
+    // margin: 0 15%;
+    background-color: $primary-color;
+    border-radius: 32px;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 5%;
+}
+
 @import 'partials/base';
 @import 'partials/header';
 @import 'partials/pattern';

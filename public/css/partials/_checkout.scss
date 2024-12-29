@@ -1,9 +1,10 @@
 .checkout-wrap {
     // padding: 5%;
-    background-color: rgba(255, 255, 255, 0.4);
+    // background-image: url('/image/bg2.jpg');
+    background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     height: 100%;
-    // width: 100vh;
+    width: 30%;
     position: fixed;
     border-left: solid;
     border-color: black;
@@ -16,7 +17,7 @@
         flex-direction: column;
 
         .head {
-            flex-basis: 15%;
+            flex-basis: 10%;
             
             span {
                 display: flex;
@@ -30,38 +31,76 @@
                     stroke: black;
                 }
     
-                p {
-                    font-size: 32px;
+                div {
+                    font-size: 43.5px;
                     font-weight: 700;
                 }
             }
         }
 
         .main {
+            background-color: rgba(255, 255, 255, 0.6);
             flex-basis: 70%;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             flex-grow: 1;
-            border: solid;
+            border: 4px solid $primary-color;
             border-radius: 16px;
 
             ul {
                 margin: 10% 10% 10% 0%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                li {
+                    .delete-order {
+                        margin-top: 5px;
+                        display: flex;
+                        width: 10%;
+                        padding: 3%;
+                        background-color: red;
+                        border-radius: 8px;
+
+                        svg {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    .delete-order:active {
+                        background-color: #E20202;
+                        transition: background-color 0.3s ease;
+                    }
+                }
             }
         }
 
         .pay {
-            flex-basis: 15%;
+            flex-basis: 20%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 5%;
+            margin-bottom: 10%;
+            // padding: 5%;
             
+            .total {
+                align-self: flex-start;
+                margin-left: 5%;
+
+                span {
+                    text-decoration-line: underline;
+                    text-decoration-color: red;
+                }
+            }
+
             .pay-button {
                 background-color: $primary-color;
                 border-radius: 16px;
-                padding: 5% 10%;
+                padding: 2% 20%;
                 font-weight: 600;
+                font-size: 32px;
             }
 
             .pay-button:active {
@@ -69,4 +108,64 @@
             }
         }
     }
+}
+
+// Modal styles
+.modal-order {
+    @include modal;
+
+    .order-content {
+        @include modalContent;
+
+        .order-close {
+            @include modalClose;
+        }
+
+        .order-main {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .order-title {
+                @include modalTitle;
+                flex-basis: 10%;
+            }
+    
+            .order-list {
+                flex-basis: 70%;
+                width: 60%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                flex-grow: 1;
+                border: 4px solid $primary-color;
+                border-radius: 16px;
+            }
+
+            .total {
+                flex-basis: 10%;
+            }
+    
+        }
+
+        .confirm-button {
+            @include modalButton;
+        }
+
+        .confirm-button:active {
+            @include click;   
+        }
+    }
+}
+               
+.hidden {
+    display: none;
+}
+
+#orderModal {
+    display: none;
+}
+          
+#orderModal:not(.hidden) {
+    display: flex;
 }

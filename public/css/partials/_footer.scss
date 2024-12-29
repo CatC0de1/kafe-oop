@@ -1,5 +1,14 @@
 .footer {
-    margin-left: 10%;
-    padding: 2% 0;
+    margin: 0px;
+    padding: 2%;
+    padding-left: 10%;
     font-weight: 700;
+    // width: 100%;
+    background-color: $darkerRgba;
+    color: white;
+    padding-bottom: 15%;
+
+    .author {
+        font-weight: 500;
+    }
 }

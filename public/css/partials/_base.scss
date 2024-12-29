@@ -1,15 +1,3 @@
-@use "sass:math";
-
-$font-stack: Helvetica, sans-sherif;
-$primary-color: #FFE5B4;
-$clicked: rgb(255, 249, 240);
-$primary-font-size: 20px;
-
-@mixin click($click: $clicked) {
-    background-color: $click;
-    transition: background-color 0.3s ease;
-}
-
 body {
     margin: 0;
     font: 100% $font-stack;
@@ -20,11 +8,45 @@ body {
         display: flex;
         flex-direction: row;
 
-        .right {
+        .placeholder {
+            display: none; /* Default tidak terlihat */
+            height: 0; /* Placeholder hanya aktif saat diperlukan */
+        }        
+
+        .left {
             flex-basis: 70%;
+            background-color: $primary-color;
+
+            .left-top {
+                width: 70%;
+                position: fixed;
+            }
+
+            .left-bottom {
+                // z-index: 9;
+                position: relative;
+                margin-top: 60%;
+                background-color: $secondary-color;
+                border-top-left-radius: 32px;
+                border-top-right-radius: 32px;
+                // overflow: hidden;
+                // transition: all 0.5s ease-in-out;
+
+                .left-bottom-scroll {
+                    max-height: 100vh;
+                    // overflow-y: hidden; /* Default tidak bisa di-scroll */
+                }
+
+                .left-bottom-scroll.add {
+                    overflow-y: auto; /* Aktifkan scroll */
+                    -webkit-overflow-scrolling: touch; /* Scroll halus di perangkat mobile */
+                    // max-height: calc(100vh - 9%); /* Atur tinggi untuk viewport */
+                    max-height: 100vh;
+                }
+            }
         }
     
-        .left {
+        .right {
             flex-basis: 30%;
         }
     }

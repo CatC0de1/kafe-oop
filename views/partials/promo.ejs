@@ -1,15 +1,18 @@
 <div class="promo-wrap">
+
     <div class="promo-nav prev">
-        <button class="prev">Prev</button>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#FFFFFF"><path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+        </button>
     </div>
 
     <div class="promo">
         <div class="promo-container">
             <% if (promo && promo.length > 0) { %>
-                <% promo.forEach((item, index) => { %>
+                <% promo.forEach((item) => { %>
                     <div class="promo-item">
-                        <p>Promo <%= index + 1 %></p>
-                        <p><%= item.content %></p>
+                        <div><%= item.promoName %></div>
+                        <div><%= item.content %></div>
                     </div>
                 <% }) %>
             <% } else { %>
@@ -19,6 +22,9 @@
     </div>
 
     <div class="promo-nav next">
-        <button class="next">Next</button>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#FFFFFF"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+        </button>
     </div>
+
 </div>

@@ -3,13 +3,13 @@
         <h2 class="nama-menu"><%= collectionName %></h2>
         <div class="menu-container">
             <% collections[collectionName].forEach(item => { %>
-                <div class="item-container" data-id="<%= item._id %>" data-collection="<%= collectionName %>" onclick="openModal('<%= item._id %>', '<%= collectionName %>')">
+                <div class="item-container" data-id="<%= item._id %>" data-collection="<%= collectionName %>" onclick="window.menuModal.openModal('<%= item._id %>', '<%= collectionName %>')">
                     <div class="image-info">
                         <img src="<%= item.image %>" alt="<%= item.name %>" class="item-image" />
                     </div>
                     <div class="item-info">
-                        <h3 class="item-nama"><%= item.name %></h3>
-                        <p class="item-harga">Rp <%= item.price %></p>
+                        <div class="item-nama"><%= item.name %></div>
+                        <div class="item-harga">Rp <%= item.price %></div>
                     </div>
                 </div>
             <% }) %>
@@ -17,11 +17,11 @@
     <% } %>
 </div>
 
-<!-- modal -->
+<!-- Modal -->
 <div id="menuModal" class="modal-menu hidden">
     <div class="menu-content">
-        <span class="menu-close" onclick="closeModal()">&times;</span>
-        <h3 id="menuName"></h3>
+        <span id="menuModalClose" class="menu-close">&times;</span>
+        <div id="menuName"></div>
         <img id="menuImage" src="" alt="menuName" />
         <p id="menuDescription"></p>
         <p id="menuPrice"></p>
@@ -34,10 +34,10 @@
             <p>Iced</p>
         </div>
         <div class="quantity-control">
-            <button class="btn-quantity" id="decrease" onclick="updateQuantity(-1)">-</button>
+            <button class="btn-quantity" id="quantityDecrease">-</button>
             <span id="quantity" class="quantity-value">1</span>
-            <button class="btn-quantity" id="increase" onclick="updateQuantity(1)">+</button>
+            <button class="btn-quantity" id="quantityIncrease">+</button>
         </div>
-        <div class="beli">Tambah ke Pesanan</div>
+        <div class="beli" onclick="window.orderManager.addToOrder()">Tambah ke Pesanan</div>
     </div>
 </div>

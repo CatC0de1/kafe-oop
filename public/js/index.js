@@ -1,57 +1,54 @@
-async function openModal(itemId, collectionName) {
-    try {
-        const response = await fetch(`/api/${collectionName}/${itemId}`);
-        const item = await response.json();
+import Base from './base.js';
+import { MenuModal } from './menuModal.js';
+import { PromoCarousel } from './promo.js';
+import { OrderManager } from './order.js';
 
-        document.getElementById('menuName').textContent = item.name;
-        document.getElementById('menuImage').src = item.image;
-        document.getElementById('menuImage').alt = item.name;
-        document.getElementById('menuDescription').textContent = item.description;
-        document.getElementById('menuPrice').textContent = `Rp ${item.price}`;
-
-        if (item.types === true) {
-            document.getElementById('tipe').style.display = 'flex';
-        } else {
-            document.getElementById('tipe').style.display = 'none';
-        }
-
-        document.getElementById('menuModal').classList.remove('hidden');
-    } catch (error) {
-        console.error('Gagal mendapatkan data item:', error);
-    }
-}
-
-menuModal.onclick = function(event) {
-  if (event.target == menuModal) {
-    document.getElementById('menuModal').classList.add('hidden');
+class Logic {
+  constructor() {
+    this.base = new Base();
+    this.menuModal = null;
+    this.orderManager = null;
+    this.init();
+    console.log('App initialized');
   }
-};
 
-let currentQuantity = 1;
+  init() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const promoCarousel = new PromoCarousel('.promo-container', '.promo-item', '.prev', '.next');
 
-function updateQuantity(change) {
-    const quantityElement = document.getElementById('quantity');
-    currentQuantity = Math.max(1, currentQuantity + change);
-    quantityElement.textContent = currentQuantity;
+      this.menuModal = new MenuModal('menuModal', 'quantity', 'tipe', 'quantityIncrease', 'quantityDecrease', 'menuModalClose');
+      window.menuModal = this.menuModal;
+      this.setupMenuItems();
+
+      this.orderManager = new OrderManager('orderModal', 'orderModalClose', 'orderList', 'payButton', 'confirmButton');
+      window.orderManager = this.orderManager;
+      this.setupOrder();
+    });
+  }
+
+  setupMenuItems() {
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const itemId = item.dataset.id;
+        const collectionName = item.dataset.collection;
+
+        if (window.menuModal) {
+          window.menuModal.openModal(itemId, collectionName);
+        }
+      });
+    });
+  }
+
+  setupOrder() {
+    const checkoutButton = document.querySelector('.pay-button');
+    checkoutButton.addEventListener('click', () => {
+      if (window.orderManager) {
+        window.orderManager.displayOrderModal();
+        window.orderManager.openOrderModal();
+      }
+    });
+  }
 }
 
-function closeModal() {
-    const modal = document.getElementById('menuModal');
-    modal.classList.add('hidden');
-
-    const quantityElement = document.getElementById('quantity');
-    currentQuantity = 1;
-    quantityElement.textContent = currentQuantity;
-
-    const toggleSwitch = document.querySelector('#tipe .switch input[type="checkbox"]');
-    toggleSwitch.checked = false;
-}
-
-
-document.addEventListener('dragstart', function(event) {
-    event.preventDefault();
-});
-
-document.addEventListener('selectstart', function(event) {
-    event.preventDefault();
-});
+new Logic();

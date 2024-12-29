@@ -2,33 +2,49 @@
     <div class="checkout">
         <div class="head">
             <span>
-                <svg viewBox="0 0 16 16" class="bi bi-cart-check" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="black">
-                    <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"></path>
-                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
-                </svg>
-                <p>Pesanan Anda</p>
+                <div>PESANAN ANDA</div>
             </span>
         </div>
         <div class="main">
             <ul>
-                <li>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, rerum modi. Ratione quasi suscipit, itaque, beatae repellat perspiciatis, commodi explicabo velit nostrum ipsa illo laudantium libero sunt consequatur praesentium odit!
-                    </p>
-                </li>
-                <li>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, rerum modi. Ratione quasi suscipit, itaque, beatae repellat perspiciatis, commodi explicabo velit nostrum ipsa illo laudantium libero sunt consequatur praesentium odit!
-                </li>
-                <li>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, rerum modi. Ratione quasi suscipit, itaque, beatae repellat perspiciatis, commodi explicabo velit nostrum ipsa illo laudantium libero sunt consequatur praesentium odit!
-                </li>
-                <li>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, rerum modi. Ratione quasi suscipit, itaque, beatae repellat perspiciatis, commodi explicabo velit nostrum ipsa illo laudantium libero sunt consequatur praesentium odit!
-                </li>
+                <% orders.forEach((order, index) => { %>
+                    <li data-index="<%= index %>">
+                        <div><%= order.name %><% if (order.type && order.type !== 'Hot') { %> (<%= order.type %>)<% } %> x<%= order.quantity %></div>
+                        <div>Rp <%= order.price * order.quantity %></div>
+                        <div class="delete-order">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                            </svg>
+                        </div>
+                    </li>
+                <% }) %>
             </ul>
         </div>
         <div class="pay">
-            <div class="pay-button">Pesan</div>
+            <div class="total">
+                <p>TOTAL HARGA: <span>Rp <%= total %></span></p>
+            </div>
+            <div id="payButton" class="pay-button">PESAN</div>
         </div>
+    </div>
+</div>
+
+<!-- modal -->
+<div id="orderModal" class="modal-order hidden">
+    <div class="order-content">
+        <span id="orderModalClose" class="order-close">&times;</span>
+        <div class="order-main">
+            <div class="order-title">KONFIRMASI PEMESANAN</div>
+            <div class="order-list">
+                <ul id="orderList">
+                    <!--  -->
+                </ul>
+            </div>
+            <div class="total">
+                <div>TOTAL HARGA: Rp <span id="orderTotal"><%= total %></span></div>
+                <div id="discountInfo"></div>
+            </div>
+        </div>
+        <div class="confirm-button" id="confirmButton">KONFIRMASI</div>
     </div>
 </div>

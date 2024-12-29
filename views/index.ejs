@@ -4,35 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <title><%= title %></title>
 </head>
 <body>
 
     <div class="wrap">
-        <div class="right">
-    
-            <%- include('partials/header.ejs') %>
-        
-            <%- include('partials/promo.ejs') %>
-        
-            <%- include('partials/menu.ejs') %>
-            
-            
-        </div>    
         <div class="left">
+
+            <div class="left-top">
+
+                <%- include('partials/header.ejs') %>
+            
+                <%- include('partials/promo.ejs') %>
+
+            </div>
+
+            <div class="left-bottom" id="leftBottom">
+
+                <div class="left-bottom-scroll" id="leftBottomScroll">
+
+                    <%- include('partials/menu.ejs') %>
+            
+                    <%- include('partials/footer.ejs') %>
+
+                    <!-- <%- include('partials/coffee.ejs') %> -->
+
+                </div>             
+                    
+            </div>
+        </div>    
+        <div class="right">
             
             <%- include('partials/checkout.ejs') %>
             
         </div>
     </div>
-    
-    <%- include('partials/coffee.ejs') %>
 
-    <%- include('partials/footer.ejs') %>
-    
 </body>
 
-<script src="js/index.js"></script>
-<script src="/js/promo.js"></script>
+<script src="dist/bundle.js"></script>
 
 </html>
