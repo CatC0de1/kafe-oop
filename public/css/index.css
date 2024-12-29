@@ -8,8 +8,8 @@ body .wrap {
   flex-direction: row;
 }
 body .wrap .placeholder {
-  display: none; /* Default tidak terlihat */
-  height: 0; /* Placeholder hanya aktif saat diperlukan */
+  display: none;
+  height: 0;
 }
 body .wrap .left {
   flex-basis: 70%;
@@ -20,6 +20,7 @@ body .wrap .left .left-top {
   position: fixed;
 }
 body .wrap .left .left-bottom {
+  z-index: 10;
   position: relative;
   margin-top: 60%;
   background-color: #1D1D1D;
@@ -30,8 +31,8 @@ body .wrap .left .left-bottom .left-bottom-scroll {
   max-height: 100vh;
 }
 body .wrap .left .left-bottom .left-bottom-scroll.add {
-  overflow-y: auto; /* Aktifkan scroll */
-  -webkit-overflow-scrolling: touch; /* Scroll halus di perangkat mobile */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   max-height: 100vh;
 }
 body .wrap .right {
@@ -186,7 +187,7 @@ html {
 .modal-menu {
   display: none;
   position: fixed;
-  z-index: 20;
+  z-index: 25;
   left: 0;
   top: 0;
   width: 100%;
@@ -196,6 +197,7 @@ html {
   backdrop-filter: blur(5px);
   justify-content: center;
   align-items: center;
+  z-index: 30;
 }
 .modal-menu .menu-content {
   background-color: white;
@@ -331,13 +333,13 @@ html {
 
 .checkout-wrap {
   background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(2px);
   height: 100%;
   width: 30%;
   position: fixed;
   border-left: solid;
   border-color: black;
-  border-width: 1px;
+  border-width: 4px;
 }
 .checkout-wrap .checkout {
   padding: 5% 10%;
@@ -425,7 +427,7 @@ html {
 .modal-order {
   display: none;
   position: fixed;
-  z-index: 20;
+  z-index: 25;
   left: 0;
   top: 0;
   width: 100%;
@@ -458,7 +460,8 @@ html {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  width: 100%;
 }
 .modal-order .order-content .order-main .order-title {
   font-size: 32px;
@@ -467,8 +470,8 @@ html {
   flex-basis: 10%;
 }
 .modal-order .order-content .order-main .order-list {
-  flex-basis: 70%;
-  width: 60%;
+  flex-basis: 60%;
+  width: 65%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   flex-grow: 1;
@@ -476,7 +479,11 @@ html {
   border-radius: 16px;
 }
 .modal-order .order-content .order-main .total {
-  flex-basis: 10%;
+  flex-basis: 30%;
+  width: 75%;
+  margin-left: 15%;
+  margin-top: 1%;
+  align-self: flex-start;
 }
 .modal-order .order-content .confirm-button {
   padding: 1% 2%;

@@ -24,7 +24,7 @@
             <div class="total">
                 <p>TOTAL HARGA: <span>Rp <%= total %></span></p>
             </div>
-            <div id="payButton" class="pay-button">PESAN</div>
+            <div id="payButton" class="pay-button <%= orders.length === 0 ? 'disabled' : '' %>">PESAN</div>
         </div>
     </div>
 </div>
@@ -42,7 +42,8 @@
             </div>
             <div class="total">
                 <div>TOTAL HARGA: Rp <span id="orderTotal"><%= total %></span></div>
-                <div id="discountInfo"></div>
+                <div id="discountInfo">
+                </div>
             </div>
         </div>
         <div class="confirm-button" id="confirmButton">KONFIRMASI</div>

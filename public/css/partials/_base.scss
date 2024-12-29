@@ -1,7 +1,6 @@
 body {
     margin: 0;
     font: 100% $font-stack;
-    // color: white;
     font-size: $primary-font-size;
     
     .wrap {
@@ -9,8 +8,8 @@ body {
         flex-direction: row;
 
         .placeholder {
-            display: none; /* Default tidak terlihat */
-            height: 0; /* Placeholder hanya aktif saat diperlukan */
+            display: none;
+            height: 0
         }        
 
         .left {
@@ -23,24 +22,20 @@ body {
             }
 
             .left-bottom {
-                // z-index: 9;
+                z-index: 10;
                 position: relative;
                 margin-top: 60%;
                 background-color: $secondary-color;
                 border-top-left-radius: 32px;
                 border-top-right-radius: 32px;
-                // overflow: hidden;
-                // transition: all 0.5s ease-in-out;
 
                 .left-bottom-scroll {
                     max-height: 100vh;
-                    // overflow-y: hidden; /* Default tidak bisa di-scroll */
                 }
 
                 .left-bottom-scroll.add {
-                    overflow-y: auto; /* Aktifkan scroll */
-                    -webkit-overflow-scrolling: touch; /* Scroll halus di perangkat mobile */
-                    // max-height: calc(100vh - 9%); /* Atur tinggi untuk viewport */
+                    overflow-y: auto;
+                    -webkit-overflow-scrolling: touch;
                     max-height: 100vh;
                 }
             }

@@ -2,13 +2,13 @@
     // padding: 5%;
     // background-image: url('/image/bg2.jpg');
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
     height: 100%;
     width: 30%;
     position: fixed;
     border-left: solid;
     border-color: black;
-    border-width: 1px;
+    border-width: 4px;
     
     .checkout {
         padding: 5% 10%;
@@ -116,6 +116,7 @@
 
     .order-content {
         @include modalContent;
+        // display: flex;
 
         .order-close {
             @include modalClose;
@@ -125,7 +126,9 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            // gap: 10px;
+            width: 100%;
 
             .order-title {
                 @include modalTitle;
@@ -133,8 +136,8 @@
             }
     
             .order-list {
-                flex-basis: 70%;
-                width: 60%;
+                flex-basis: 60%;
+                width: 65%;
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
                 flex-grow: 1;
@@ -143,7 +146,11 @@
             }
 
             .total {
-                flex-basis: 10%;
+                flex-basis: 30%;
+                width: 75%;
+                margin-left: 15%;
+                margin-top: 1%;
+                align-self: flex-start
             }
     
         }

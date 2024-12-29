@@ -79,6 +79,7 @@
 // modal
 .modal-menu {
     @include modal;
+    z-index: 30;
 
     .menu-content {
         @include modalContent;

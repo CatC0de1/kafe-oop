@@ -17,7 +17,7 @@ $darkerRgba: rgba(0, 0, 0, 0.5);
 @mixin modal() {
     display: none;
     position: fixed;
-    z-index: 20;
+    z-index: 25;
     left: 0;
     top: 0;
     width: 100%;
@@ -57,7 +57,6 @@ $darkerRgba: rgba(0, 0, 0, 0.5);
 
 @mixin modalButton {
     padding: 1% 2%;
-    // margin: 0 15%;
     background-color: $primary-color;
     border-radius: 32px;
     position: fixed;

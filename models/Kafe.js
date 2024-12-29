@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
-// const { cekDiskon } = require('../public/js/order');
+const fs = require('fs');
+const Calculate = require('./Calculate');
 
 class Kafe {
     constructor(nama, mongoURI) {
@@ -67,19 +68,23 @@ class Kafe {
             }
         });
 
-        // this.router.post('/apply-discount', (req, res) => {
-        //     try {
-        //         const orders = req.body.orders || [];
-        //         console.log('Received orders:', orders);
-        //         const { totalHarga, discountInfo } = cekDiskon(orders);
-        //         console.log('Calculated totalHarga:', totalHarga);
-        //         console.log('Calculated discountInfo:', discountInfo);
-        //         res.json({ total: totalHarga, discountInfo });
-        //     } catch (error) {
-        //         console.error('Error applying discount:', error);
-        //         res.status(500).json({ error: 'Internal Server Error' });
-        //     }
-        // });
+        this.router.post('/api/calculateDiscount', (req, res) => {
+            const { orders } = req.body;
+            const calculate = new Calculate([], [], orders);
+            const total = calculate.diskon();
+            res.json({ message: calculate.discountMessage, total });
+        });
+
+        this.router.post('/api/printReceipt', (req, res) => {
+            const { receipt } = req.body;
+            fs.writeFile('receipt.txt', receipt, (err) => {
+                if (err) {
+                    console.error('Gagal mencetak struk:', err);
+                    return res.status(500).json({ error: 'Gagal mencetak struk.' });
+                }
+                res.json({ message: 'Struk telah dicetak!' });
+            });
+        });
     }
 }
 
