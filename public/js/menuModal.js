@@ -1,5 +1,4 @@
 export class MenuModal {
-  // class MenuModal {
   constructor(modalId, quantityId, tipeId, quantityIncreaseId, quantityDecreaseId, closeId) {
     this.modal = document.getElementById(modalId);
     this.quantityElement = document.getElementById(quantityId);
@@ -65,12 +64,9 @@ export class MenuModal {
   }
 
   updateQuantity(change) {
-    // Correctly update the quantity
     this.currentQuantity += change;
-
-    // Ensure quantity stays within valid bounds (at least 1)
     this.currentQuantity = Math.max(1, this.currentQuantity);
-    this.quantityElement.textContent = this.currentQuantity; // Update the displayed quantity
+    this.quantityElement.textContent = this.currentQuantity;
   }
 
   close() {
@@ -86,56 +82,3 @@ export class MenuModal {
     this.display(itemId, collectionName);
   }
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   window.menuModal = new MenuModal('menuModal', 'quantity', 'tipe', 'quantityIncrease', 'quantityDecrease', 'menuModalClose');
-// });
-
-
-// import { MenuModal } from './menuModal.js';
-
-// class Logic {
-//     constructor() {
-//         this.menuModal = null;
-//         this.init();
-//     }
-
-//     init() {
-//         // Inisialisasi MenuModal setelah DOM siap
-//         document.addEventListener('DOMContentLoaded', () => {
-//             this.initializeMenuModal();
-//             this.setupMenuItems();
-//             console.log('Logic initialized');
-//         });
-//     }
-
-//     initializeMenuModal() {
-//         // Membuat instance MenuModal
-//         this.menuModal = new MenuModal(
-//             'menuModal',          // ID modal
-//             'quantity',           // ID elemen jumlah
-//             'tipe',               // ID elemen tipe
-//             'quantityIncrease',   // ID tombol tambah jumlah
-//             'quantityDecrease',   // ID tombol kurang jumlah
-//             'menuModalClose'      // ID tombol tutup
-//         );
-//         console.log('MenuModal initialized:', this.menuModal);
-//     }
-
-//     setupMenuItems() {
-//         // Menambahkan event listener pada setiap item menu
-//         const menuItems = document.querySelectorAll('.menu-item');
-//         menuItems.forEach(item => {
-//             item.addEventListener('click', () => {
-//                 const itemId = item.dataset.id; // ID dari atribut data-id
-//                 const collectionName = 'menu'; // Sesuaikan dengan nama koleksi data API
-//                 this.menuModal.openModal(itemId, collectionName);
-//             });
-//         });
-
-//         console.log('Menu items event listeners added.');
-//     }
-// }
-
-// // Inisialisasi Logic
-// new Logic();

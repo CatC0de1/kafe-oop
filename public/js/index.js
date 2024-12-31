@@ -1,15 +1,14 @@
-import Base from './base.js';
+import BaseUx from './base.js';
 import { MenuModal } from './menuModal.js';
 import { PromoCarousel } from './promo.js';
 import { OrderManager } from './order.js';
 
-class Logic {
+class Controller {
   constructor() {
-    this.base = new Base();
+    this.baseUx = new BaseUx();
     this.menuModal = null;
     this.orderManager = null;
     this.init();
-    console.log('App initialized');
   }
 
   init() {
@@ -51,4 +50,4 @@ class Logic {
   }
 }
 
-new Logic();
+new Controller();

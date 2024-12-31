@@ -1,5 +1,4 @@
-export default class ScrollHandler {
-// class ScrollHandler {
+export default class BaseUx {
   constructor() {
       this.header = document.querySelector('.header');
       this.leftBottom = document.getElementById('leftBottom');
@@ -77,6 +76,3 @@ export default class ScrollHandler {
       }
   }
 }
-
-// new ScrollHandler();
-// module.exports = ScrollHandler;

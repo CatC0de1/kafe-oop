@@ -100,6 +100,20 @@ export class OrderManager {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const total = orders.reduce((sum, order) => sum + (order.price * order.quantity), 0);
     document.querySelector('.checkout .total span').textContent = `Rp ${total}`;
+    this.updateDiscountInfo(orders);
+  }
+
+  async updateDiscountInfo(orders) {
+    const discountInfo = await this.fetchDiscountInfo(orders);
+    document.getElementById('orderTotal').textContent = discountInfo.total;
+
+    const discountInfoElement = document.getElementById('discountInfo');
+    if (discountInfo.message) {
+        const discountMessages = discountInfo.message.split('!');
+        discountInfoElement.innerHTML = discountMessages.filter(message => message.trim()).map(message => `<div>${message.trim()}!</div>`).join('');
+    } else {
+        discountInfoElement.innerHTML = '';
+    }
   }
 
   updatePayButtonState() {
@@ -215,8 +229,11 @@ export class OrderManager {
   }
 
   confirmOrder() {
-    alert('Pesanan Anda telah dikonfirmasi!');
     this.printReceipt();
     this.closeOrderModal();
+  }
+
+  hitungTotal(pesanan) {
+    return pesanan.reduce((total, item) => total + item.harga, 0);
   }
 }
