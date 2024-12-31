@@ -1,19 +1,21 @@
 const path = require('path');
 
 module.exports = {
-  entry: './public/js/index.js', // File entry point
-  output: {
-    filename: 'bundle.js', // Nama output file
-    path: path.resolve(__dirname, 'public/dist'), // Direktori output
+  entry: {
+    index: './public/js/index.js',
   },
-  mode: 'development', // Mode development untuk debugging
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'public/dist'),
+  },
+  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.js$/, // Gunakan loader untuk file .js
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Untuk mendukung fitur modern ES6+
+          loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
           },

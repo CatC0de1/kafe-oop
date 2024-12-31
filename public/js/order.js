@@ -233,7 +233,7 @@ export class OrderManager {
     this.closeOrderModal();
   }
 
-  hitungTotal(pesanan) {
-    return pesanan.reduce((total, item) => total + item.harga, 0);
-  }
+  // hitungTotal(pesanan) {
+  //   return pesanan.reduce((total, item) => total + item.harga, 0);
+  // }
 }

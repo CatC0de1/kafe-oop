@@ -64,8 +64,8 @@ class Kafe {
 
     this.router.post('/api/calculateDiscount', (req, res) => {
       const { orders } = req.body;
-      const calculate = new Calculate([], [], orders);
-      const total = calculate.diskon();
+      const calculate = new Calculate(orders);
+      const total = calculate.discount();
       res.json({ message: calculate.discountMessage, total });
     });
 
