@@ -11,6 +11,7 @@ class Kafe {
     this.initRoutes();
   }
 
+  // method mendapatkan collections dari KafeServer melalui API
   async fetchAllCollections() {
     try {
       const response = await axios.get(`${this.mongoURI}/api/allCollections`);
@@ -21,6 +22,7 @@ class Kafe {
     }
   }
 
+  // method mendapatkan content promo dari KafeServer melalui API
   async fetchPromoContent() {
     try {
       const response = await axios.get(`${this.mongoURI}/api/promo`);
@@ -31,6 +33,7 @@ class Kafe {
     }
   }
 
+  // method inisialisasi uuntuk merender halaman, menyiapkan data menu, data promo, dan logic untuk print receipt
   initRoutes() {
     this.router.get('/', async (req, res) => {
       const collections = await this.fetchAllCollections();

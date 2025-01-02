@@ -13,29 +13,29 @@ class App {
     this.initRoutes();
   }
 
-  // inisialisasi EJS
+  // method untuk inisialisasi ejs agar bisa menampilkan halaman
   initEjs() {
     this.app.set('view engine', 'ejs');
     this.app.set('views', path.join(__dirname, 'views'));
   }
 
-  // inisialisasi static file
+  // method untuk inisialisasi static file supaya directory lebih mudah
   initStatic() {
     this.app.use(express.static(path.join(__dirname, 'public')));
   }
 
-  // inisialisasi middleware
+  // method untuk inisialisasi middleware
   initMiddleware() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
 
-  // inisialiasi routes
+  // method untuk inisialiasi routes untuk Kafe
   initRoutes() {
     this.app.use('/', this.kafe.router);
   }
 
-  // menjalankan App
+  // method untuk menjalankan App
   start() {
     this.app.listen(this.port, () => {
       console.log(`Server sedang berjalan di http://localhost:${this.port}`);

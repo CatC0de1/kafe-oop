@@ -64,7 +64,7 @@ export class OrderManager {
 
     window.menuModal.close();
     this.displayOrders();
-    window.menuModal.currentQuantity = 1; // Reset quantity after adding to order
+    window.menuModal.currentQuantity = 1;
   }
 
   displayOrders() {

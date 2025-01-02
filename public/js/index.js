@@ -11,6 +11,7 @@ class Controller {
     this.init();
   }
 
+  // method inisialisasi untuk menangkap propety2 dalam html/ejs
   init() {
     document.addEventListener('DOMContentLoaded', () => {
       const promoCarousel = new PromoCarousel('.promo-container', '.promo-item', '.prev', '.next');
@@ -25,6 +26,7 @@ class Controller {
     });
   }
 
+  // mengatur menu agar modal menu dapat ditampilkan
   setupMenuItems() {
     const menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach(item => {
@@ -39,6 +41,7 @@ class Controller {
     });
   }
 
+  // mengatur order agar pesanan dapat ditampilkan serta modal dari order dapat ditampilkan
   setupOrder() {
     const checkoutButton = document.querySelector('.pay-button');
     checkoutButton.addEventListener('click', () => {
